@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --coverage --verbose",
     "start": "node index.js",
-    "dev":"nodemon",
-    "lint":"eslint index.js server.js router.js"
+    "dev": "nodemon",
+    "lint": "eslint index.js server.js router.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "jest": "^26.6.1"
+    "jest": "^26.6.1",
+    "supertest": "^5.0.0"
   }
 }
