@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 const server = require('./src/server.js');
-const mongoose= require('mongoose')
+const mongoose= require('mongoose');
 const MONGODB_URI = process.env.MONGODB_URI ;
 
 mongoose
