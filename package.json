@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon"
+    "test": "jest --coverage --verbose",
+    "start": "node index.js",
+    "dev":"nodemon",
+    "lint":"eslint index.js server.js router.js"
   },
   "repository": {
     "type": "git",
