@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const users = require('../auth/models/users/users-model.js');
 const basicAuth = require('../auth/middleware/basic.js');
+const oauth = require('./middleware/oauth.js');
+
 router.post('/signup', (req, res) => {
   console.log(req.body);
   users.save(req.body).then((user) => {
@@ -18,5 +20,9 @@ router.get('/users', (req, res) => {
     console.log(results);
     res.json({ results: results });
   });
+});
+router.get('/oauth', oauth, (req, res) => {
+  console.log("GOOOOOOOOOOOD",req.token)
+  res.json({token:req.token,user:req.user});
 });
 module.exports = router;

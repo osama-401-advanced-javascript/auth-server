@@ -10,11 +10,11 @@ class User extends Collection {
   }
   async save(record) {
     let userObj = await this.get({ username: record.username });
-    console.log('loooooooooooooooog', userObj);
-    console.log('loooooooooooooooog2222', record);
+    // console.log('loooooooooooooooog', userObj);
+    // console.log('loooooooooooooooog2222', record);
     if (userObj.length == 0) {
       record.password = await bcrypt.hash(record.password, 5);
-      console.log('loooooooooooooooog2222', record);
+      // console.log('loooooooooooooooog2222', record);
       await this.create(record);
       return record;
     } else {

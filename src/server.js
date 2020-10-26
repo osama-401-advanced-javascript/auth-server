@@ -12,9 +12,14 @@ const notFound = require('./middleware/404.js');
 const errorHandler = require('./middleware/500.js');
 // const apiRouter = require('../routes/api.js');
 app.use(express.json());
+app.use(express.static('./public'));
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use('/', router);
+
+
+
 const PORT = process.env.PORT || 4000;
 app.get('/bad', (req, res) => {
   throw new Error('a test error');
