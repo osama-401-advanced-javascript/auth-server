@@ -54,7 +54,7 @@ async function getUser(remoteUser) {
     username: remoteUser.login,
     password: 'oauthpassword', //this can be anything (it will be hashed)
   };
-  const checkdb=await users.get(record.username)
+  const checkdb=await users.get({username:record.username})
   if(checkdb.length>0){
       const user=checkdb;
       const token=users.generateToken(user);
