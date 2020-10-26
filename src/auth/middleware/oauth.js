@@ -59,8 +59,9 @@ async function getUser(remoteUser) {
       const user=checkdb;
       const token=users.generateToken(user);
       return[user,token]
-  }
+  }else{
   const user = await users.save(record);
   const token = users.generateToken(user);
   return [user, token];
+  }
 }
