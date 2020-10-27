@@ -10,6 +10,8 @@ const router = require('../src/auth/router.js');
 // const logger = require('../middleware/logger.js');
 const notFound = require('./middleware/404.js');
 const errorHandler = require('./middleware/500.js');
+const bearerAuth = require('./extra-routes.js');
+
 // const apiRouter = require('../routes/api.js');
 app.use(express.json());
 app.use(express.static('./public'));
@@ -17,6 +19,9 @@ app.use(express.static('./public'));
 app.use(morgan('dev'));
 app.use(cors());
 app.use('/', router);
+app.use(bearerAuth);
+
+
 
 
 
