@@ -30,8 +30,24 @@ class User extends Collection {
     return valid ? userObj[0] : Promise.reject();
   }
   generateToken(user) {
-    const token = jwt.sign({ username: user.username }, SECRET);
+    const token = jwt.sign({ username: user.username }, SECRET,{ expiresIn: 900 });
     return token;
   }
+  async authenticateToken  (token) {
+    try {
+      const tokenObject = jwt.verify(token, SECRET);
+      console.log('TOKEN OBJECT', tokenObject);
+      const check=await this.get({username:tokenObject.username})
+      console.log("__check__",check);
+      if(check.length>0){
+      
+        return Promise.resolve(tokenObject);
+      } else {
+        return Promise.reject();
+      }
+    } catch (e) {
+      return Promise.reject(e.message);
+    }
+  };
 }
 module.exports = new User();
