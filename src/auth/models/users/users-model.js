@@ -30,7 +30,7 @@ class User extends Collection {
     return valid ? userObj[0] : Promise.reject();
   }
   generateToken(user) {
-    const token = jwt.sign({ username: user.username }, SECRET,{ expiresIn: 900 });
+    const token = jwt.sign({ username: user.username,capabilities:this.capabilities(user) }, SECRET,{ expiresIn: 900 });
     return token;
   }
   async authenticateToken  (token) {
@@ -49,5 +49,20 @@ class User extends Collection {
       return Promise.reject(e.message);
     }
   };
+  capabilities(user) {
+    console.log('capabilities executed');
+    if (user.role === 'admin') {
+      return ['read', 'create', 'update', 'delete'];
+    }
+    if (user.role === 'user') {
+      return ['read'];
+    }
+    if (user.role === 'writer') {
+      return ['read', 'create'];
+    }
+    if (user.role === 'editor') {
+      return ['read', 'create', 'update'];
+    }
+  }
 }
 module.exports = new User();
